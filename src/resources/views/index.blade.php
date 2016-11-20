@@ -1,0 +1,1 @@
+@extends('vendor.hobord.admin.layout.admin_layout')

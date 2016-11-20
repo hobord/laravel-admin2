@@ -1,0 +1,29 @@
+{
+    "name": "hobord/admin",
+    "description": "admin interface",
+    "type": "library",
+    "license": "MIT",
+    "keywords": ["laravel", "admin"],
+    "authors": [
+        {
+            "name": "Balazs Szabo",
+            "email": "balazs.szabo@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Hobord\\Admin\\": "src"
+        }
+    },
+    "require": {
+        "laravel/framework": "5.3.*",
+        "lavary/laravel-menu": "^1.6",
+        "santigarcor/laratrust": "^3.0",
+        "lavary/laravel-menu": "^1.6",
+        "hobord/menu_db": "dev-master"
+    },
+    "suggest": {
+
+    }
+}
