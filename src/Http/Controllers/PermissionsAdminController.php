@@ -52,4 +52,10 @@ class PermissionsAdminController  extends Controller
         }
         return Redirect(route('admin.acl'));
     }
+
+    public function deleteRole($role_id)
+    {
+        Role::destroy($role_id);
+        return Redirect(route('admin.acl'));
+    }
 }

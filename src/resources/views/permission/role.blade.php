@@ -60,7 +60,7 @@
                         </div>
                         <div class="panel-footer text-right">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                            <a href="#" class="btn btn-danger btn-ok">Delete</a>
+                            <a href="{{route('admin.acl.delete.role', ['id'=>$role->id])}}" class="btn btn-danger btn-ok">Delete</a>
                         </div>
                     </div>
                 </div>

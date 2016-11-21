@@ -43,6 +43,10 @@ Route::group(['prefix' => 'admin'], function () {
             'middleware' => ['permission:admin.acl.manage'],
             'uses' =>'PermissionsAdminController@editRole'
         ])->name('admin.acl.edit.role.save');
+        Route::get('/permissions/role/delete/{id}',  [
+            'middleware' => ['permission:admin.acl.manage'],
+            'uses' =>'PermissionsAdminController@deleteRole'
+        ])->name('admin.acl.delete.role');
         Route::get('/permissions/role/{id?}',  [
             'middleware' => ['permission:admin.acl.manage'],
             'uses' =>'PermissionsAdminController@editRoleForm'
