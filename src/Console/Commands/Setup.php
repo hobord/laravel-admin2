@@ -151,53 +151,78 @@ class Setup extends Command
 
     public function createAdminMenu()
     {
-        $admin_menu = Menu::where('machine_name', 'admin.system')->first();
+        $admin_menu = Menu::where('machine_name', 'admin.left_side')->first();
         if($admin_menu) {
             return;
         }
 
         $admin_menu = Menu::create([
-            'machine_name' => 'admin.system',
+            'machine_name' => 'admin.left_side',
             'display_name' => 'System',
-            'description' => 'Main system menu'
+            'description' => 'Main left side system menu'
         ]);
+
+        $system_menu = MenuItem::create([
+            'menu_id' => $admin_menu->id,
+            'parent_id' => null,
+            'unique_name' => 'admin.system',
+            'menu_text' => '<i class="fa fa-laptop"></i><span>System</span>
+                        <span class="pull-right-container">
+                          <i class="fa fa-angle-left pull-right"></i>
+                        </span>',
+            'parameters' => [
+                 'class'=>"treeview"
+            ]
+        ]);
+
 
         MenuItem::create([
             'menu_id' => $admin_menu->id,
-            'parent_id' => null,
+            'parent_id' => $system_menu->id,
             'unique_name' => 'admin.system.usermanagement',
-            'menu_text' => '<i class="fa fa-circle-o"></i>Users',
+            'menu_text' => '<i class="fa fa-users"></i>Users',
             'parameters' => [
                 'route'  => 'admin.users',
-                'permission' => 'admin.users.manage'
+                'permission' => 'admin.users.manage',
+                'class'=>"treeview"
             ]
         ]);
 
         MenuItem::create([
             'menu_id' => $admin_menu->id,
-            'parent_id' => null,
+            'parent_id' => $system_menu->id,
             'unique_name' => 'admin.system.acl',
-            'menu_text' => '<i class="fa fa-circle-o"></i>Permissions',
+            'menu_text' => '<i class="fa fa-check-square-o"></i>Permissions',
             'parameters' => [
                 'route'  => 'admin.acl',
-                'permission' => 'admin.acl.manage'
+                'permission' => 'admin.acl.manage',
+                'class'=>"treeview"
             ]
         ]);
 
-        $struct_menu = Menu::create([
-            'machine_name' => 'admin.structure',
-            'display_name' => 'Structures',
-            'description' => 'Menus, taxonomoies'
+
+        $structure_menu = MenuItem::create([
+            'menu_id' => $admin_menu->id,
+            'parent_id' => null,
+            'unique_name' => 'admin.system',
+            'menu_text' => '<i class="fa fa-sitemap"></i><span>Sturcture</span>
+                        <span class="pull-right-container">
+                          <i class="fa fa-angle-left pull-right"></i>
+                        </span>',
+            'parameters' => [
+                'class'=>"treeview"
+            ]
         ]);
 
         MenuItem::create([
-            'menu_id' => $struct_menu->id,
-            'parent_id' => null,
+            'menu_id' => $admin_menu->id,
+            'parent_id' => $structure_menu->id,
             'unique_name' => 'admin.structure.menu',
-            'menu_text' => '<i class="fa fa-circle-o"></i>Menus',
+            'menu_text' => '<i class="fa fa-sitemap"></i>Menus',
             'parameters' => [
                 'route'  => 'admin.acl',
-                'permission' => 'admin.menu.manage'
+                'permission' => 'admin.menu.manage',
+                'class'=>"treeview"
             ]
         ]);
 

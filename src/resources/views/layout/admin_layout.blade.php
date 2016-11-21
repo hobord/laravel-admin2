@@ -184,29 +184,11 @@
         <section class="sidebar">
 
             <ul class="sidebar-menu">
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-laptop"></i> <span>System</span>
-                        <span class="pull-right-container">
-                          <i class="fa fa-angle-left pull-right"></i>
-                        </span>
-                    </a>
-                    <ul class="treeview-menu">
-                        {!! Menu::get('admin.system')->render('ul',[]) !!}
-                    </ul>
-                </li>
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-sitemap"></i> <span>Sturcture</span>
-                        <span class="pull-right-container">
-                          <i class="fa fa-angle-left pull-right"></i>
-                        </span>
-                    </a>
-                    <ul class="treeview-menu">
-                        {!! Menu::get('admin.structure')->render('ul',[]) !!}
-                    </ul>
-                </li>
-                <!--
+            {!! Menu::get('admin.left_side')->render('ul',null,['class'=>"treeview-menu"]) !!}
+
+            </ul>
+
+        <!--
                                 <li class="treeview">
                                     <a href="#">
                                         <i class="fa fa-dashboard"></i> <span>Dashboard</span>

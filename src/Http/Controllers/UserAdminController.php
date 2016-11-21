@@ -16,8 +16,8 @@ class UserAdminController  extends Controller
 
     public function index()
     {
-        $menu = Menu::get('admin.system');
-        $menu->item('admin.system.usermanagement')->active();
+        $menu = Menu::get('admin.left_side');
+        $menu->item('admin.system.usermanagement')->activate();
 
         $users = User::paginate(15);
 
@@ -26,8 +26,8 @@ class UserAdminController  extends Controller
 
     public function createUserForm()
     {
-        $menu = Menu::get('admin.system');
-        $menu->item('admin.system.usermanagement')->active();
+        $menu = Menu::get('admin.left_side');
+        $menu->item('admin.system.usermanagement')->activate();
 
         $user = new User;
         $user->id=null;
@@ -39,8 +39,8 @@ class UserAdminController  extends Controller
 
     public function editUserForm($user_id)
     {
-        $menu = Menu::get('admin.system');
-        $menu->item('admin.system.usermanagement')->active();
+        $menu = Menu::get('admin.left_side');
+        $menu->item('admin.system.usermanagement')->activate();
 
         $user = User::find($user_id);
         return view('vendor.hobord.admin.user.edit', ['user' => $user]);
@@ -48,6 +48,8 @@ class UserAdminController  extends Controller
 
     public function editUser(Request $request, $user_id=null)
     {
+        // @var App\User $user;
+
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users,email,'.$user_id,
@@ -55,34 +57,32 @@ class UserAdminController  extends Controller
         ]);
 
         if ($validator->passes()) {
-            if($user_id) {
-                $data = ['id' => $user_id];
-            }
-            else {
+            if ($user_id) {
+                $data = $request->all();
+                $password = $request->get('password');
+                unset($data['password']);
+
+                $user = User::find($user_id);
+                $user->fill($data);
+                if ($password && $password != '') {
+                    $user->password = bcrypt($password);
+                }
+
+                $user->save();
+                return Redirect::back()->with('messages-success', ['User saved']);
+            } else {
                 $data = [
                     'id' => $user_id,
                     'name' => $request->get('name'),
                     'email' => $request->get('email'),
                     'password' => bcrypt($request->get('password'))
                 ];
-            }
-            // @var App\User $user;
-            $user = User::firstOrCreate($data);
-
-            $user->fill($request->all());
-            if($request->get('password')) {
-                $user->password = bcrypt($request->get('password'));
-            }
-
-            $user->save();
-            if($user_id)
-                return Redirect::back()->with('messages-success', ['User saved']);
-            else
+                User::create($data);
                 return Redirect(route('admin.users'));
+            }
         }
 
         $errors = $validator->errors();
-
         return Redirect::back()->with('messages-danger', $errors->all());
     }
 }
