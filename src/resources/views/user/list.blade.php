@@ -1,5 +1,16 @@
 @extends('vendor.hobord.admin.layout.admin_layout')
 
+@section('content_header')
+    <h1>
+        User Management
+        <small>You can list, edit and create users.</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="{{route('admin.index')}}"><i class="fa fa-dashboard"></i>Home</a></li>
+        <li><a href="#" class="active"><i class="fa fa-users"></i>User Management</a></li>
+    </ol>
+@endsection
+
 @section('content')
     @parent
 
@@ -9,7 +20,7 @@
             <div class="box-tools pull-right">
                 <!-- Buttons, labels, and many other things can be placed here! -->
                 @if(Auth::User()->can('admin.users.create'))
-                    <a class="btn btn-success" href="{{ route('admin.users.create') }}">Create User</a>
+                    <a class="btn btn-success" href="{{ route('admin.user.create') }}">Create User</a>
                 @endif
             </div><!-- /.box-tools -->
         </div><!-- /.box-header -->

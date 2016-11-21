@@ -1,11 +1,22 @@
 @extends('vendor.hobord.admin.layout.admin_layout')
 
+@section('content_header')
+    <h1>
+        @if($user->id) Edit @else Create @endif User
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="{{route('admin.index')}}"><i class="fa fa-dashboard"></i>Home</a></li>
+        <li><a href="{{route('admin.users')}}" class="active"><i class="fa fa-users"></i>User Management</a></li>
+        <li><a href="@if($user->id){{route("admin.users.edit", $user->id)}}@else{{route("admin.user.create")}}@endif" class="active"><i class="fa fa-user"></i>@if($user->id) Edit @else Create @endif User</a></li>
+    </ol>
+@endsection
+
 @section('content')
     @parent
     <form method="post" action="{{route('admin.users.edit',$user->id)}}">{{ csrf_field() }}
         <div class="box">
             <div class="box-header with-border">
-                <h3 class="box-title">Edit user</h3>
+                <h3 class="box-title">User</h3>
                 <div class="box-tools pull-right">
                     <!-- Buttons, labels, and many other things can be placed here! -->
 
