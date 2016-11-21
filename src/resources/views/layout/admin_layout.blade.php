@@ -22,6 +22,12 @@
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="/hobord-admin/adminlte/css/skins/_all-skins.min.css">
 
+    <style>
+        .table-striped>tbody>tr:nth-of-type(odd) {
+            background-color: #d2d6de;
+        }
+    </style>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -38,9 +44,9 @@
         <!-- Logo -->
         <a href="../../index2.html" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b>A</b>LT</span>
+            <span class="logo-mini"><i class="fa fa-empire" aria-hidden="true"></i></span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b>Admin</b>LTE</span>
+            <span class="logo-lg"><b>Admin </b><i class="fa fa-empire" aria-hidden="true"></i></span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">

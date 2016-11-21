@@ -25,12 +25,12 @@
             <div class="box-body">
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input name="name" value="{{$user->name}}" type="text" class="form-control" id="name" placeholder="Enter full name" autocomplete="off" >
+                    <input name="name" value="{{$user->name}}" type="text" class="form-control" id="name" placeholder="Enter full name" autocomplete="off"  required>
                 </div>
 
                 <div class="form-group">
                     <label for="email">Email address</label>
-                    <input name="email" value="{{$user->email}}" type="email" class="form-control" id="email" placeholder="Enter email" autocomplete="off" >
+                    <input name="email" value="{{$user->email}}" type="email" class="form-control" id="email" placeholder="Enter email" autocomplete="off"  required>
                 </div>
 
                 <div class="form-group">
@@ -56,11 +56,11 @@
                 @endif
 
             </div><!-- /.box-body -->
-            <div class="box-footer">
-                <button class="btn btn-success">Save</button>
+            <div class="box-footer text-right">
                 @if(Auth::User()->can('admin.users.delete') && $user->id!=null)
-                <a href="#" data-toggle="modal" data-target="#confirm-delete" class="btn btn-danger pull-right">Delete</a>
+                <a href="#" data-toggle="modal" data-target="#confirm-delete" class="btn btn-danger">Delete</a>
                 @endif
+                <button class="btn btn-success">Save</button>
             </div><!-- box-footer -->
         </div><!-- /.box -->
     </form>

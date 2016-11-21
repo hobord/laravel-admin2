@@ -36,8 +36,26 @@ Route::group(['prefix' => 'admin'], function () {
         // ACL
         Route::get('/permissions',  [
             'middleware' => ['permission:admin.acl.manage'],
-            'uses' =>'PermissionsController@index'
+            'uses' =>'PermissionsAdminController@index'
         ])->name('admin.acl');
+
+        Route::post('/permissions/role/save',  [
+            'middleware' => ['permission:admin.acl.manage'],
+            'uses' =>'PermissionsAdminController@editRole'
+        ])->name('admin.acl.edit.role.save');
+        Route::get('/permissions/role/{id?}',  [
+            'middleware' => ['permission:admin.acl.manage'],
+            'uses' =>'PermissionsAdminController@editRoleForm'
+        ])->name('admin.acl.edit.role');
+
+        Route::get('/permissions/permission/{id?}',  [
+            'middleware' => ['permission:admin.acl.manage'],
+            'uses' =>'PermissionsAdminController@index'
+        ])->name('admin.acl.edit.permission');
+        Route::post('/permissions/permission',  [
+            'middleware' => ['permission:admin.acl.manage'],
+            'uses' =>'PermissionsAdminController@index'
+        ])->name('admin.acl.edit.permission');
 
     });
 
