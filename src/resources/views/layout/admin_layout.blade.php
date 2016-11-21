@@ -182,7 +182,6 @@
     <aside class="main-sidebar">
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
-
             <ul class="sidebar-menu">
             {!! Menu::get('admin.left_side')->render('ul',null,['class'=>"treeview-menu"]) !!}
 

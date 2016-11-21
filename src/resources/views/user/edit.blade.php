@@ -35,7 +35,32 @@
             </div><!-- /.box-body -->
             <div class="box-footer">
                 <button class="btn btn-success">Save</button>
+                @if(Auth::User()->can('admin.users.delete') && $user->id!=null)
+                <a href="#" data-toggle="modal" data-target="#confirm-delete" class="btn btn-danger pull-right">Delete</a>
+                @endif
             </div><!-- box-footer -->
         </div><!-- /.box -->
     </form>
+
+    @if(Auth::User()->can('admin.users.delete') && $user->id!=null)
+    <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="confirmDelete" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="panel panel-danger">
+                    <div class="panel-heading">
+                        Warning!!!
+                    </div>
+                    <div class="panel-body">
+                        Are you sure delete user: {{$user->name}} - {{$user->email}}?
+                    </div>
+                    <div class="panel-footer text-right">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <a href="{{route('admin.users.delete', $user->id)}}" class="btn btn-danger btn-ok">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
 @endsection
+

@@ -85,4 +85,10 @@ class UserAdminController  extends Controller
         $errors = $validator->errors();
         return Redirect::back()->with('messages-danger', $errors->all());
     }
+
+    public function deleteUser($user_id)
+    {
+        User::destroy($user_id);
+        return Redirect(route('admin.users'))->with('messages-success', ['User deleted!']);
+    }
 }

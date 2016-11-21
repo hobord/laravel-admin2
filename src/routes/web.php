@@ -18,6 +18,10 @@ Route::group(['prefix' => 'admin'], function () {
             'middleware' => ['permission:admin.users.create'],
             'uses' =>'UserAdminController@createUserForm'
         ])->name('admin.users.create');
+        Route::get('/user/{id}/delete', [
+            'middleware' => ['permission:admin.users.delete'],
+            'uses' =>'UserAdminController@deleteUser'
+        ])->name('admin.users.delete');
         Route::get('/user/{id}', [
             'middleware' => ['permission:admin.users.edit'],
             'uses' =>'UserAdminController@editUserForm'
