@@ -62,5 +62,17 @@ class PermissionsAdminController  extends Controller
     public function setPermissions(Request $request)
     {
         dd($request->all());
+        $roles = Role::all();
+        $permissions = Permission::all();
+        foreach ($roles as $role) {
+            if(array_key_exists($role->name,$request->get('permissions'))) {
+                foreach ($permissions as $permission) {
+                    //
+                }
+            }
+            else { //delete all permission
+
+            }
+        }
     }
 }
