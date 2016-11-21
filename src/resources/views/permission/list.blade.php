@@ -12,7 +12,7 @@
 @endsection
 
 @section('content')
-
+    <form action="{{route('admin.acl')}}" method="post">{{ csrf_field() }}
     <div class="box">
         <div class="box-header with-border">
             <h3 class="box-title">Roles and Permissions</h3>
@@ -47,7 +47,7 @@
                         @foreach($roles as $role)
                         <td>
                             <div class="checkbox">
-                                <label><input type="checkbox" name="permissions[{{$role->name}}][]" @if($role->hasPermission($permission->name)) checked @endif>{{$permission->display_name}}</label>
+                                <label><input type="checkbox" name="permissions[{{$role->name}}][]" value="{{$permission->name}}" @if($role->hasPermission($permission->name)) checked @endif>{{$permission->display_name}}</label>
                             </div>
                         </td>
                         @endforeach
@@ -56,9 +56,9 @@
                 </tbody>
             </table>
         </div><!-- /.box-body -->
-        <div class="box-footer">
-
+        <div class="box-footer text-right">
+            <button class="btn btn-success">Save</button>
         </div><!-- box-footer -->
     </div><!-- /.box -->
-
+    </form>
 @endsection

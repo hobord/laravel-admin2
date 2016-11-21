@@ -58,4 +58,9 @@ class PermissionsAdminController  extends Controller
         Role::destroy($role_id);
         return Redirect(route('admin.acl'));
     }
+
+    public function setPermissions(Request $request)
+    {
+        dd($request->all());
+    }
 }

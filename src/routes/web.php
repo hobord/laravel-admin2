@@ -34,6 +34,11 @@ Route::group(['prefix' => 'admin'], function () {
 
 
         // ACL
+        Route::post('/permissions',  [
+            'middleware' => ['permission:admin.acl.manage'],
+            'uses' =>'PermissionsAdminController@setPermissions'
+        ])->name('admin.acl');
+
         Route::get('/permissions',  [
             'middleware' => ['permission:admin.acl.manage'],
             'uses' =>'PermissionsAdminController@index'
