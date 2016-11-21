@@ -48,11 +48,7 @@ class PermissionsAdminController  extends Controller
             $role->save();
         }
         else { //create
-            $role = Role::create([
-                'name' => $request->get('name'),
-                'display_name' => $request->get('display_name'),
-                'description' => $request->get('description'),
-            ]);
+            $role = Role::create($request->all());
         }
         return Redirect(route('admin.acl'));
     }
