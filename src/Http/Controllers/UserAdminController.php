@@ -5,6 +5,7 @@ namespace Hobord\Admin\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Role;
 use Illuminate\Http\Request;
 use Validator;
 use Redirect;
@@ -19,7 +20,7 @@ class UserAdminController  extends Controller
         $menu = Menu::get('admin.left_side');
         $menu->item('admin.system.usermanagement')->activate();
 
-        $users = User::paginate(15);
+        $users = User::with('roles')->paginate(15);
 
         return view('vendor.hobord.admin.user.list', ['users' => $users]);
     }
@@ -43,7 +44,8 @@ class UserAdminController  extends Controller
         $menu->item('admin.system.usermanagement')->activate();
 
         $user = User::find($user_id);
-        return view('vendor.hobord.admin.user.edit', ['user' => $user]);
+        $roles = Role::all();
+        return view('vendor.hobord.admin.user.edit', ['user' => $user, 'roles'=>$roles]);
     }
 
     public function editUser(Request $request, $user_id=null)
@@ -67,6 +69,11 @@ class UserAdminController  extends Controller
                 if ($password && $password != '') {
                     $user->password = bcrypt($password);
                 }
+
+
+                $user->detachRoles($user->roles);
+                $roles = Role::whereIn('name', $data['roles'])->get();
+                $user->attachRoles($roles);
 
                 $user->save();
                 return Redirect::back()->with('messages-success', ['User saved']);

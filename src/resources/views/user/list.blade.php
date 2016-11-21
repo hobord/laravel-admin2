@@ -52,7 +52,11 @@
                                 {{ $user->email }}
                             @endif
                         </td>
-                        <td>root</td>
+                        <td>
+                            @foreach($user->roles as $role)
+                                {{$role->display_name}} @if(!$loop->last),@endif
+                            @endforeach
+                        </td>
                         <td>{{ $user->updated_at }}</td>
                         <td>{{ $user->created_at }}</td>
                     </tr>

@@ -42,6 +42,18 @@
                     <input name="password_confirmation" type="password" class="form-control" id="password_confirmation" placeholder="Confirm new password" autocomplete="off" >
                 </div>
 
+                @if($user->id)
+                    <div class="form-group">
+                        <label for="">Roles</label>
+                        @foreach($roles as $role)
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" @if($user->hasRole($role->name)) checked @endif name="roles[]" value="{{$role->name}}"> {{$role->display_name}}
+                                </label>
+                            </div>
+                        @endforeach
+                    </div>
+                @endif
 
             </div><!-- /.box-body -->
             <div class="box-footer">
