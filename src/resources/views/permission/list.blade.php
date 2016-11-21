@@ -47,7 +47,7 @@
                         @foreach($roles as $role)
                         <td>
                             <div class="checkbox">
-                                <label><input type="checkbox" name="{{$role->name}}[]" @if($role->hasPermission($permission->name)) checked @endif>{{$permission->display_name}}</label>
+                                <label><input type="checkbox" name="permissions[{{$role->name}}][]" @if($role->hasPermission($permission->name)) checked @endif>{{$permission->display_name}}</label>
                             </div>
                         </td>
                         @endforeach
