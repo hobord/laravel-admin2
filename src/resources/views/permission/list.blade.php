@@ -40,7 +40,7 @@
                         <td>
                             <div class="checkbox">
                                 <label>
-                                    <a href="#" data-toggle="tooltip" title="{{$permission->description}} [{{$permission->name}}]">{{$permission->display_name}}</a>
+                                    <a href="{{route('admin.acl.edit.permission').'/'.$permission->id}}" data-toggle="tooltip" title="{{$permission->description}} [{{$permission->name}}]">{{$permission->display_name}}</a>
                                 </label>
                             </div>
                         </td>
