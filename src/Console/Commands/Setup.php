@@ -183,8 +183,10 @@ class Setup extends Command
             'menu_text' => '<i class="fa fa-users"></i>Users',
             'parameters' => [
                 'route'  => 'admin.users',
-                'permission' => 'admin.users.manage',
                 'class'=>"treeview"
+            ],
+            'meta_data' => [
+                'permission' => 'admin.users.manage'
             ]
         ]);
 
@@ -195,9 +197,12 @@ class Setup extends Command
             'menu_text' => '<i class="fa fa-check-square-o"></i>Permissions',
             'parameters' => [
                 'route'  => 'admin.acl',
-                'permission' => 'admin.acl.manage',
                 'class'=>"treeview"
+            ],
+            'meta_data' => [
+                'permission' => 'admin.acl.manage'
             ]
+
         ]);
 
 
@@ -221,8 +226,10 @@ class Setup extends Command
             'menu_text' => '<i class="fa fa-sitemap"></i>Menus',
             'parameters' => [
                 'route'  => 'admin.menu',
-                'permission' => 'admin.menu.manage',
                 'class'=>"treeview"
+            ],
+            'meta_data' => [
+                'permission' => 'admin.menu.manage'
             ]
         ]);
 
