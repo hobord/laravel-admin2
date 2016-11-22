@@ -220,7 +220,7 @@ class Setup extends Command
             'unique_name' => 'admin.structure.menu',
             'menu_text' => '<i class="fa fa-sitemap"></i>Menus',
             'parameters' => [
-                'route'  => 'admin.acl',
+                'route'  => 'admin.menu',
                 'permission' => 'admin.menu.manage',
                 'class'=>"treeview"
             ]
