@@ -57,13 +57,17 @@ Route::group(['prefix' => 'admin'], function () {
             'uses' =>'PermissionsAdminController@editRoleForm'
         ])->name('admin.acl.edit.role');
 
+        Route::post('/permissions/permission/save',  [
+            'middleware' => ['permission:admin.acl.manage'],
+            'uses' =>'PermissionsAdminController@editPermission'
+        ])->name('admin.acl.edit.permission.save');
+        Route::get('/permissions/permission/delete/{id}',  [
+            'middleware' => ['permission:admin.acl.manage'],
+            'uses' =>'PermissionsAdminController@deletePermission'
+        ])->name('admin.acl.delete.permission');
         Route::get('/permissions/permission/{id?}',  [
             'middleware' => ['permission:admin.acl.manage'],
-            'uses' =>'PermissionsAdminController@index'
-        ])->name('admin.acl.edit.permission');
-        Route::post('/permissions/permission',  [
-            'middleware' => ['permission:admin.acl.manage'],
-            'uses' =>'PermissionsAdminController@index'
+            'uses' =>'PermissionsAdminController@editPermissionForm'
         ])->name('admin.acl.edit.permission');
 
     });
