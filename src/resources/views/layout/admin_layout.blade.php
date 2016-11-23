@@ -28,6 +28,8 @@
         }
     </style>
 
+    @yield('header_styles')
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -36,7 +38,7 @@
     <![endif]-->
 </head>
 <!-- ADD THE CLASS sidedar-collapse TO HIDE THE SIDEBAR PRIOR TO LOADING THE SITE -->
-<body class="hold-transition skin-blue sidebar-collapse sidebar-mini">
+<body class="hold-transition skin-purple sidebar-mini"><!-- sidebar-collapse -->
 <!-- Site wrapper -->
 <div class="wrapper">
 
@@ -630,6 +632,9 @@
 </script>
 <!-- AdminLTE App -->
 <script src="/hobord-admin/adminlte/js/app.min.js"></script>
+
+@yield('footer_scripts')
+
 
 </body>
 </html>
