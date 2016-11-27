@@ -1,6 +1,10 @@
 <?php
 
 Route::group(['prefix' => 'admin'], function () {
+    Route::get('/logout', function () {
+        Auth::logout();
+        return redirect(route('admin.index'));
+    })->name('admin.logout');
 
     Route::group(['prefix' => '/', 'middleware' => ['auth','permission:admin.access']], function () {
 
@@ -70,12 +74,45 @@ Route::group(['prefix' => 'admin'], function () {
             'uses' =>'PermissionsAdminController@editPermissionForm'
         ])->name('admin.acl.edit.permission');
 
+
+
     });
 
-    Route::get('/logout', function () {
-        Auth::logout();
-        return redirect(route('admin.index'));
-    })->name('admin.logout');
+    Route::group(['prefix' => '/acl/api'], function () {
+        Route::group(['prefix' => '/role'], function () {
+            Route::get('/list', 'RoleApiController@listRoles');
+            Route::get('/{id}', 'RoleApiController@getRole');
+            Route::post('/{id?}', [
+                'middleware' => ['permission:admin.acl.manage'],
+                'uses' => 'RoleApiController@updateRole'
+            ]);
+            Route::get('/{role_id}/attach_permission/{permission_id}', [
+                'middleware' => ['permission:admin.acl.manage'],
+                'uses' => 'RoleApiController@attachPermission'
+            ]);
+            Route::get('/{role_id}/detach_permission/{permission_id}', [
+                'middleware' => ['permission:admin.acl.manage'],
+                'uses' => 'RoleApiController@detachPermission'
+            ]);
+            Route::get('/delete/{id}', [
+                'middleware' => ['permission:admin.acl.manage'],
+                'uses' => 'RoleApiController@deleteRole'
+            ]);
+        });
+        Route::group(['prefix' => '/permission'], function () {
+            Route::get('/list', 'PermissionApiController@listPermissions');
+            Route::get('/{id}', 'PermissionApiController@get');
+            Route::post('/{id?}', [
+                'middleware' => ['permission:admin.acl.manage'],
+                'uses' => 'PermissionApiController@update'
+            ]);
+            Route::get('/delete/{id}', [
+                'middleware' => ['permission:admin.acl.manage'],
+                'uses' => 'PermissionApiController@delete'
+            ]);
+        });
+    });
+
 
 });
 
