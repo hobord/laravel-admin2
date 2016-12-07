@@ -56,6 +56,10 @@
                 </tbody>
             </table>
         </div><!-- /.box-body -->
+
+
+
+
         <div class="box-footer text-right">
             <button class="btn btn-success">Save</button>
         </div><!-- box-footer -->

@@ -35,7 +35,6 @@ class UserAdminController  extends Controller
 
         return view('vendor.hobord.admin.user.edit', ['user' => $user]);
 
-
     }
 
     public function editUserForm($user_id)
