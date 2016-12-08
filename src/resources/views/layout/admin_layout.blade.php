@@ -37,7 +37,7 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    @yield('angular_templates');
+    @yield('angular_templates')
 </head>
 <!-- ADD THE CLASS sidedar-collapse TO HIDE THE SIDEBAR PRIOR TO LOADING THE SITE -->
 <body class="hold-transition skin-purple sidebar-mini"><!-- sidebar-collapse -->
