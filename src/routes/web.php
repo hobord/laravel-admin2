@@ -6,7 +6,6 @@ Route::group(['prefix' => 'admin'], function () {
         return redirect(route('admin.index'));
     })->name('admin.logout');
 
-
     Route::group(['prefix' => '/user/api', 'middleware' => ['permission:admin.users.manage']], function () {
         Route::get('/',                   'UserApiController@listUsers');
         Route::get('/{id}',               'UserApiController@getUser');
@@ -20,9 +19,9 @@ Route::group(['prefix' => 'admin'], function () {
     Route::group(['prefix' => '/acl/api'], function () {
 
         Route::group(['prefix' => '/role'], function () {
-            Route::get('/list', 'RoleApiController@listRoles');
+            Route::get('/', 'RoleApiController@listRoles');
             Route::get('/{id}', 'RoleApiController@getRole');
-            Route::post('/{id?}', [
+            Route::post('/', [
                 'middleware' => ['permission:admin.acl.manage'],
                 'uses' => 'RoleApiController@updateRole'
             ]);
@@ -34,19 +33,19 @@ Route::group(['prefix' => 'admin'], function () {
                 'middleware' => ['permission:admin.acl.manage'],
                 'uses' => 'RoleApiController@detachPermission'
             ]);
-            Route::get('/delete/{id}', [
+            Route::get('/{id}/delete', [
                 'middleware' => ['permission:admin.acl.manage'],
                 'uses' => 'RoleApiController@deleteRole'
             ]);
         });
         Route::group(['prefix' => '/permission'], function () {
-            Route::get('/list', 'PermissionApiController@listPermissions');
+            Route::get('/', 'PermissionApiController@listPermissions');
             Route::get('/{id}', 'PermissionApiController@get');
-            Route::post('/{id?}', [
+            Route::post('/', [
                 'middleware' => ['permission:admin.acl.manage'],
                 'uses' => 'PermissionApiController@update'
             ]);
-            Route::get('/delete/{id}', [
+            Route::get('/{id}/delete', [
                 'middleware' => ['permission:admin.acl.manage'],
                 'uses' => 'PermissionApiController@delete'
             ]);
@@ -54,6 +53,7 @@ Route::group(['prefix' => 'admin'], function () {
 
 
     });
+
 
     Route::group(['prefix' => '/', 'middleware' => ['auth','permission:admin.access']], function () {
 
