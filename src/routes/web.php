@@ -6,7 +6,9 @@ Route::group(['prefix' => 'admin'], function () {
         return redirect(route('admin.index'));
     })->name('admin.logout');
 
-    Route::group(['prefix' => '/user/api', 'middleware' => ['permission:admin.users.manage']], function () {
+    Route::group(['prefix' => '/api/user',
+        'middleware' => ['permission:admin.users.manage']
+        ], function () {
         Route::get('/',                   'UserApiController@listUsers');
         Route::get('/{id}',               'UserApiController@getUser');
         Route::post('/',                  'UserApiController@updateUser');
@@ -16,7 +18,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('/{id}/roles/detach', 'UserApiController@detachRoles');
     });
 
-    Route::group(['prefix' => '/acl/api'], function () {
+    Route::group(['prefix' => '/api/acl'], function () {
 
         Route::group(['prefix' => '/role'], function () {
             Route::get('/', 'RoleApiController@listRoles');
@@ -55,9 +57,13 @@ Route::group(['prefix' => 'admin'], function () {
     });
 
 
-    Route::group(['prefix' => '/', 'middleware' => ['auth','permission:admin.access']], function () {
+    Route::group(['prefix' => '/',
+        'middleware' => ['auth','permission:admin.access']
+        ], function () {
 
         Route::get('/', function () {
+
+
             return view('vendor.hobord.admin.index');
         })->name('admin.index');
 

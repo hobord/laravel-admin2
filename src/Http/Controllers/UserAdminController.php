@@ -20,10 +20,18 @@ class UserAdminController  extends Controller
         $menu = Menu::get('admin.left_side');
         $menu->item('admin.system.usermanagement')->activate();
 
-        $users = User::with('roles')->paginate(15);
-
-        return view('vendor.hobord.admin.user.list', ['users' => $users]);
+        return view('vendor.hobord.admin.user.index');
     }
+
+//    public function index()
+//    {
+//        $menu = Menu::get('admin.left_side');
+//        $menu->item('admin.system.usermanagement')->activate();
+//
+//        $users = User::with('roles')->paginate(15);
+//
+//        return view('vendor.hobord.admin.user.list', ['users' => $users]);
+//    }
 
     public function createUserForm()
     {
