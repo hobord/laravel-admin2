@@ -1,5 +1,5 @@
 <script type="application/javascript">
-    myApp.service("userServicesHttpFacade", function ($http) {
+    userAdminApp.service("userServicesHttpFacade", function ($http) {
 
         var apiBase = "/admin/api/user";
 

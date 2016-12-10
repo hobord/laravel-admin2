@@ -38,3 +38,11 @@
     </div><!-- /.box -->
 </div>
 @endsection
+
+@section('footer_scripts')
+
+    @include('vendor.hobord.admin.user.angular.services')
+    @include('vendor.hobord.admin.user.angular.controller')
+
+
+@endsection
