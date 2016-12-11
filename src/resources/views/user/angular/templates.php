@@ -1,5 +1,5 @@
 
-<script type="text/ng-template" id="admin.user.list.html">
+<script type="text/ng-template" id="hobord.admin.user.list.html">
     <table class="table table-striped table-condensed">
         <thead>
         <tr>
@@ -27,7 +27,7 @@
 </script>
 
 
-<script type="text/ng-template" id="admin.user.edit.html">
+<script type="text/ng-template" id="hobord.admin.user.edit.html">
     <div class="box">
         <div class="box-header with-border">
             <h3 class="box-title">User</h3>
@@ -103,7 +103,7 @@
     </div>
 </script>
 
-<script type="text/ng-template" id="admin.user.edit.html">
+<script type="text/ng-template" id="hobord.admin.user.edit.html">
     <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="confirmDelete" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">

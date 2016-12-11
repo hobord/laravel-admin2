@@ -29,8 +29,8 @@
             </div><!-- /.box-tools -->
         </div><!-- /.box-header -->
 
-        <div class="box-body">
-            <div user-list></div>
+        <span class="box-body">
+            <span admin-user-list></span>
         </div><!-- /.box-body -->
         <div class="box-footer">
 
